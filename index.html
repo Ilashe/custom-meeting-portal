@@ -14,64 +14,88 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
+            overflow: hidden;
         }
         
         .container {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
             width: 100%;
+            height: 98vh;
+            max-height: 98vh;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
         }
         
         .header {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            padding: 30px;
+            padding: 12px 15px;
             text-align: center;
             color: white;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 3px;
         }
         
         .logo-container {
-            margin-bottom: 20px;
+            flex-shrink: 0;
         }
         
         .logo-container img {
-            max-width: 150px;
-            height: auto;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
             background: white;
-            padding: 15px;
+            padding: 6px;
             border-radius: 50%;
+            display: block;
         }
         
         .header h1 {
-            font-size: 28px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin: 0;
         }
         
         .header p {
-            font-size: 16px;
+            font-size: 12px;
             opacity: 0.9;
         }
         
         .content {
-            padding: 40px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 0;
         }
         
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
+            width: 100%;
+            flex: 1;
+            min-height: 0;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 10px;
             background: #000;
-            margin-bottom: 30px;
         }
         
         .video-container iframe {
@@ -83,35 +107,19 @@
             border: none;
         }
         
-        .info-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .info-section h2 {
-            color: #1e3c72;
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-        
-        .info-section p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-        
         .button-container {
             text-align: center;
+            flex-shrink: 0;
         }
         
         .join-button {
             display: inline-block;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 16px 48px;
+            padding: 12px 35px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
@@ -130,32 +138,74 @@
         }
         
         .timer-text {
-            margin-top: 15px;
+            margin-top: 10px;
             color: #666;
-            font-size: 14px;
+            font-size: 12px;
             font-style: italic;
         }
         
         .footer {
             background: #f8f9fa;
-            padding: 20px;
+            padding: 8px;
             text-align: center;
             color: #666;
-            font-size: 14px;
+            font-size: 11px;
+            flex-shrink: 0;
         }
         
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 24px;
+                font-size: 20px;
+            }
+            
+            .header p {
+                font-size: 13px;
             }
             
             .content {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .join-button {
-                padding: 14px 36px;
+                padding: 12px 32px;
+                font-size: 15px;
+            }
+            
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .header {
+                padding: 15px;
+            }
+            
+            .logo-container img {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .header h1 {
                 font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .content {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .footer {
+                padding: 8px;
             }
         }
     </style>
@@ -163,40 +213,33 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo-container">
-                <img src=".\avw-logo.jpg" alt="AVW Equipment Company Logo">
+            <div class="header-top">
+                <div class="logo-container">
+                    <img src="./avw-logo.jpg" alt="AVW Equipment Company Logo">
+                </div>
+                <h1>AVW Equipment Company</h1>
             </div>
-            <h1>AVW Equipment Company</h1>
             <p>Welcome to Your Meeting Experience</p>
         </div>
         
         <div class="content">
+            <div class="video-container">
+                <video 
+                    id="introVideo"
+                    controls
+                    style="width: 100%; height: 100%; object-fit: contain;">
+                    <source src="./tech.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
 
-          <!-- Responsive YouTube Short -->
-            <div class="video-container" style="position: relative; width: 100%; padding-bottom: 178%; height: 0; overflow: hidden; border-radius: 10px;">
-            <iframe 
-             src="https://www.youtube.com/embed/kqLz53z8Inc"
-             title="YouTube Short"
-             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-             frameborder="0"
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-             allowfullscreen>
-            </iframe>
+            <div class="button-container">
+                <a href="#" id="joinButton" class="join-button">Join Meeting</a>
+                <p class="timer-text" id="timerText">
+                    Button will activate in <span id="countdown">5</span> seconds after video starts...
+                </p>
+            </div>
         </div>
-
-    <!-- Buttons + Timer -->
-    <div class="button-container" style="text-align: center; margin-top: 20px;">
-        <a href="#" id="joinButton" class="join-button" 
-           style="display: inline-block; padding: 12px 25px; background-color: #007bff; color: white; text-decoration: none; font-size: 16px; border-radius: 8px; pointer-events: none; opacity: 0.6;">
-           Join Meeting
-        </a>
-
-        <p class="timer-text" id="timerText" style="margin-top: 10px; font-size: 14px; color: #555;">
-            Button will activate in <span id="countdown">5</span> seconds...
-        </p>
-    </div>
-</div>
-
         
         <div class="footer">
             © 2025 AVW Equipment Company. All rights reserved.
@@ -211,20 +254,32 @@
         const joinButton = document.getElementById('joinButton');
         const timerText = document.getElementById('timerText');
         const countdownSpan = document.getElementById('countdown');
+        const video = document.getElementById('introVideo');
         
         let secondsLeft = 5;
         let timerInterval;
+        let videoStarted = false;
         
-        // Start countdown when page loads
-        timerInterval = setInterval(() => {
-            secondsLeft--;
-            countdownSpan.textContent = secondsLeft;
-            
-            if (secondsLeft <= 0) {
-                clearInterval(timerInterval);
-                activateButton();
+        // Listen for video play event
+        video.addEventListener('play', function() {
+            if (!videoStarted) {
+                videoStarted = true;
+                console.log('Video started playing');
+                startCountdown();
             }
-        }, 1000);
+        });
+        
+        function startCountdown() {
+            timerInterval = setInterval(() => {
+                secondsLeft--;
+                countdownSpan.textContent = secondsLeft;
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                    activateButton();
+                }
+            }, 1000);
+        }
         
         function activateButton() {
             joinButton.classList.add('active');
@@ -236,23 +291,6 @@
                     e.preventDefault();
                 }
             });
-        }
-        
-        // Optional: Track if video is actually playing (requires YouTube API)
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('introVideo', {
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-        
-        function onPlayerStateChange(event) {
-            // YT.PlayerState.PLAYING = 1
-            if (event.data == 1) {
-                console.log('Video is playing');
-            }
         }
     </script>
 </body>
