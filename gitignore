@@ -1,0 +1,12 @@
+##FOR VIMEO 
+
+<iframe
+    src="https://player.vimeo.com/video/YOUR_VIMEO_ID?api=1"
+    id="introVideo"
+    frameborder="0"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+</iframe>
+
+
+
