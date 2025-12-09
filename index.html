@@ -113,7 +113,7 @@
         }
         
         .join-button {
-            display: inline-block;
+            display: none;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 12px 35px;
@@ -123,16 +123,15 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-        
-        .join-button.active {
             cursor: pointer;
             opacity: 1;
         }
         
-        .join-button.active:hover {
+        .join-button.visible {
+            display: inline-block;
+        }
+        
+        .join-button.visible:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
         }
@@ -219,7 +218,6 @@
                 </div>
                 <h1>AVW Equipment Company</h1>
             </div>
-            <p>Welcome to Your Meeting Experience</p>
         </div>
         
         <div class="content">
@@ -238,9 +236,9 @@
             </div>
 
             <div class="button-container">
-                <a href="#" id="joinButton" class="join-button">Join Meeting</a>
+                <a href="#" id="joinButton" class="join-button">CONTINUE TO BOOKING</a>
                 <p class="timer-text" id="timerText">
-                    Button will activate in <span id="countdown">5</span> seconds after video starts...
+                    Watch 75% of the video to unlock the booking button...
                 </p>
             </div>
         </div>
@@ -257,45 +255,22 @@
         
         const joinButton = document.getElementById('joinButton');
         const timerText = document.getElementById('timerText');
-        const countdownSpan = document.getElementById('countdown');
         const video = document.getElementById('introVideo');
         
-        let secondsLeft = 5;
-        let timerInterval;
-        let videoStarted = false;
+        let buttonShown = false;
         
-        // Listen for video play event
-        video.addEventListener('play', function() {
-            if (!videoStarted) {
-                videoStarted = true;
-                console.log('Video started playing');
-                startCountdown();
+        // Track video progress
+        video.addEventListener('timeupdate', function() {
+            const watchedPercentage = (video.currentTime / video.duration) * 100;
+            
+            // Show button when 75% watched
+            if (watchedPercentage >= 75 && !buttonShown) {
+                buttonShown = true;
+                joinButton.classList.add('visible');
+                joinButton.href = meetingUrl;
+                timerText.textContent = 'Click above to join your meeting';
             }
         });
-        
-        function startCountdown() {
-            timerInterval = setInterval(() => {
-                secondsLeft--;
-                countdownSpan.textContent = secondsLeft;
-                
-                if (secondsLeft <= 0) {
-                    clearInterval(timerInterval);
-                    activateButton();
-                }
-            }, 1000);
-        }
-        
-        function activateButton() {
-            joinButton.classList.add('active');
-            joinButton.href = meetingUrl;
-            timerText.textContent = 'Click below to join your meeting';
-            
-            joinButton.addEventListener('click', function(e) {
-                if (!this.classList.contains('active')) {
-                    e.preventDefault();
-                }
-            });
-        }
     </script>
 </body>
 </html>
